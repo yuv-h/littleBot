@@ -28,6 +28,7 @@ battery()
 Internet()
 {
 	static interState := 1
+	static dinoPlayerState := 1
 	If !ConnectedToInternet() 
 	{
 		if interState = 1
@@ -40,6 +41,23 @@ Internet()
 	{
 		internetOnAn()
 		interState = 1
+		dinoPlayerState = 1
+	}
+	IfWinActive, ahk_exe chrome.exe
+	{
+		if interState = 0
+		{
+			if dinoPlayerState = 1
+			{
+				MsgBox, 4, Activate dinoPlayer?, Activate dinoPlayer function?
+				IfMsgBox Yes
+				{
+					send {f5}
+					run dinoPlayer\dinoPlayer.ahk
+				}
+				dinoPlayerState = 0
+			}
+		}
 	}
 	return
 }
