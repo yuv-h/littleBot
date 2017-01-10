@@ -1,9 +1,12 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetBatchLines -1
 SetKeyDelay ,-1,-1
 Process, Priority,,H
 
 global factor := 525
+
+msgbox, When ready to start press Ctrl+Shift+d `n when the player losses press d again to stop script
 
 ^+d up::
 	clipboard = 2
