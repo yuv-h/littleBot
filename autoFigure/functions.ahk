@@ -115,3 +115,39 @@ sound()
 		soundsStat = 1
 	}
 }
+
+isWindowFullScreen()
+{
+	static isVis := 1
+	IfWinActive, ahk_exe chrome.exe
+	{
+		;checks if the specified window is full screen
+		;use WinExist of another means to get the Unique ID (HWND) of the desired window
+		WinID := WinExist("A")
+		if ( !WinID )
+			return
+	
+		WinGet, style, Style, ahk_id %WinID%
+		; 0x800000 is WS_BORDER.
+		; 0x20000000 is WS_MINIMIZE.
+		; no border and not minimized
+		retVal := (style & 0x20800000) ? 0 : 1
+		if retVal
+		{
+			if isVis = 1
+			{
+				Gui, Show, Hide
+				isVis = 0
+			}
+		}
+		else
+		{
+			if isVis = 0
+			{
+				isVis = 1
+				Gui, Show, Maximize
+			}
+		}
+	}
+	return
+}

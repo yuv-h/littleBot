@@ -5,30 +5,29 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetTitleMatchMode, 2
 CoordMode, Mouse, Screen
 
+CustomColor = black
+Gui +LastFound +AlwaysOnTop -Caption +ToolWindow
+Gui, Color, %CustomColor%
+
+SetTimer, checkOps, 3000
+SetTimer, updateLocMouse, 100
+
+Gui, Add, Picture,, %A_WorkingDir%\img\figure.bmp
+WinSet, TransColor, %CustomColor%
+Gui, Show, NoActivate
+checkOps()
+goto blinkHandle
+
 ~^s::
 	IfWinActive, figure.ahk - Notepad++
 	sleep 500
 	reload
 return
 
-!+^s::
-	CustomColor = black
-	Gui +LastFound +AlwaysOnTop -Caption +ToolWindow
-	Gui, Color, %CustomColor%
-
-	SetTimer, checkOps, 3000
-	SetTimer, updateLocMouse, 200
-	
-	Gui, Add, Picture,, %A_WorkingDir%\img\figure.bmp
-	WinSet, TransColor, %CustomColor%
-	Gui, Show, NoActivate
-	checkOps()
-	goto blinkHandle
-return
-
 checkOps()
 {
 	Internet()
+	isWindowFullScreen()
 	battery()
 	sound()
 	return
