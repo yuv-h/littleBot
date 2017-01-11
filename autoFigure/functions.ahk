@@ -68,7 +68,10 @@ ConnectedToInternet(flag=0x40)
 }
 
 updateLoc(xpos, ypos)
-{
+{	
+	if A_IsCompiled
+		WinMove, figure.exe,, xpos, ypos
+	else
 	WinMove, figure.ahk,, xpos, ypos
 	return
 }
@@ -76,7 +79,10 @@ updateLoc(xpos, ypos)
 updateLocMouse()
 {
 	MouseGetPos, xpos, ypos
-	WinMove, figure.ahk,, xpos, ypos
+	if A_IsCompiled
+		WinMove, figure.exe,, xpos, ypos
+	else
+		WinMove, figure.ahk,, xpos, ypos
 	return
 }
 
