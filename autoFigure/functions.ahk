@@ -53,7 +53,7 @@ Internet()
 				IfMsgBox Yes
 				{
 					send {f5}
-					run dinoPlayer\dinoPlayer.ahk
+					run dinoPlayer\dinoPlayer.exe
 				}
 				dinoPlayerState = 0
 			}

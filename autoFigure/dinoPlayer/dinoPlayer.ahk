@@ -14,7 +14,7 @@ msgbox, When ready to start press Ctrl+Shift+d `n when the player losses press d
 	sleep 500
 	ToolTip
 	send {space}
-	run ‏‏dinoPlayerBirdHandler.ahk
+	run ‏‏dinoPlayerBirdHandler.exe
 	loop
 	{
 		KeyWait, d, D T0.001
